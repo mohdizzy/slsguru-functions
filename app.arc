@@ -12,7 +12,7 @@ post /buy
 buy-now
 
 @scheduled
-buydata rate(1 minute)
+buydata rate(6 hours)
 
 @tables
 data
