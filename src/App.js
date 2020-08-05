@@ -1,6 +1,5 @@
 /* global fetch */
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 const App = () => {
@@ -16,26 +15,27 @@ const App = () => {
       }
     }
     fetchData()
-  })
+  });
+
+
+const handleBuy = async (event) => {
+  await fetch('/buy',{method:'POST',headers: {
+    "Content-Type": "application/json"
+  },body: JSON.stringify({type:event.target.name})});
+  
+}
+  
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{message}</p>
-        <p>Change me!</p>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <p style={{fontSize:"24pt"}}>{message}</p>
+      <div className="App-header" style={{flexDirection:"row"}}>
+        
+        <button onClick={handleBuy} name="prod1" style={{height:"100px",width:"120px",margin:"20px"}}>Buy Product 1</button>
+        <button onClick={handleBuy} name="prod2" style={{height:"100px",width:"120px",margin:"20px"}}>Buy Product 2</button>
+        <br/><br/>
+        
+      </div>
     </div>
   );
 }
