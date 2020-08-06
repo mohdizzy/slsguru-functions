@@ -11,7 +11,7 @@ exports.handler = async function http (req) {
 
   let td = await data.get({table: tableName})
 
-  console.log(td[0].key)
+  console.log(td.key)
   
   console.log('Begin API called')
   return {

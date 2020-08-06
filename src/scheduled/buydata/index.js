@@ -4,6 +4,7 @@ const buyTableName = 'buyData';
 
 exports.handler = async function scheduled (event) {
   console.log(JSON.stringify(event, null, 2))
+  
   let invTable = await data.get({table: tableName})
 
   await data.set(

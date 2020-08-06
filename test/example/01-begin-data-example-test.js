@@ -119,6 +119,39 @@ test('data.get can read an entire table', async t => {
   logJSON(result,null,2)
 })
 
+
+/**
+ * Begin data at Schedule function test
+ */
+test('Schedule function test', async t => {
+  t.plan(2)
+  
+  let result = await data.set({
+    table: 'inventory',
+    key: 'stocks',
+    prod1: 8,
+    prod2: 8
+  })
+  
+  t.equal(result.prod1, 8,"Got prod1 stock")
+
+  let getInvTable = await data.get({
+    table: 'inventory',
+  
+  })
+  
+  let result2 = await data.set({
+    table:"buydata",
+  key:getInvTable[0].key,
+  prod1:getInvTable[0].prod1,
+  prod2:getInvTable[0].prod2})
+
+  t.ok(result2.key === "stocks", "Key matches with buydata table ")
+  
+  logJSON(result,null,2)
+  logJSON(result2,null,2)
+})
+
 test('Shut down sandbox', async t=> {
   t.plan(1)
   end()
